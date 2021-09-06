@@ -19,7 +19,7 @@ long long  compute_hash(const string &str)
 
     return hash;
 }
-
+//This is the main function
 int main()
 {
   string str1="chirag",str2="chirag";
