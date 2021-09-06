@@ -2,7 +2,7 @@
 
 using namespace std;
 
-
+//This is the hashing_function (rolling hash function)
 long long  compute_hash(const string &str)
 {
     int l=str.size();
@@ -19,7 +19,6 @@ long long  compute_hash(const string &str)
 
     return hash;
 }
-
 
 int main()
 {
