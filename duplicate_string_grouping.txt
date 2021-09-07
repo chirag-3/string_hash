@@ -1,0 +1,89 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+long long compute_hash(const string &str)
+{
+   const int p=31;
+   const int m= 1e9 + 9;
+   long long hash=0;
+   long long p_pow=1;
+   int l=str.size();
+   int i=0;
+
+   while(i<l)
+   {
+      hash = (hash + (str[i]-'a'+1)*p_pow)%m ;
+      p_pow=(p*p_pow)%m;
+      i++;
+   }
+
+   return hash;
+}
+
+
+bool compare(pair<long long,int> p1,pair<long long,int> p2)
+{
+    if(p1.first<p2.first)
+        return 1;
+    else
+        return 0;
+}
+
+
+int main()
+{
+    vector<string> strings;
+    string str;
+    int n;
+    cout<<"Enter the number of strings in the vector : ";
+    cin>>n;
+
+    cout<<"Enter the string one by one : "<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>str;
+        strings.push_back(str);
+    }
+
+    vector<pair<long long,int>> Hash;
+
+    for(int i=0;i<n;i++)
+    {
+        Hash.push_back({compute_hash(strings[i]),i});
+    }
+
+    sort(Hash.begin(),Hash.end(),compare);
+
+    vector<vector<int>> groups;
+    vector<string> Groups;
+    vector<int> Phi;
+    Groups.push_back(strings[Hash[0].second]);
+    groups.push_back(Phi);
+    int k=0;
+    groups[k].push_back(Hash[0].second);
+    for(int i=1;i<n;i++)
+    {
+        if(Hash[i].first!=Hash[i-1].first)
+        {
+            Groups.push_back(strings[Hash[i].second]);
+            groups.push_back(Phi);
+            k++;
+        }
+        groups[k].push_back(Hash[i].second);
+    }
+
+    int L=Groups.size();
+
+    for(int i=0;i<L;i++)
+    {
+
+        cout<<Groups[i];
+        for(auto itr=groups[i].begin();itr!=groups[i].end();itr++)
+            cout<<"  "<<*itr;
+        cout<<endl;
+    }
+
+    return 0;
+}
+
