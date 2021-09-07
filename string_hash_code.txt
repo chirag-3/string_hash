@@ -23,7 +23,7 @@ long long  compute_hash(const string &str)
 int main()
 {
   string str1="chirag",str2="chirag";
-  cout<<compute_hash(str1)<<endl<<compute_hash(str2)<<endl;
+  cout<<compute_hash(str1)<<endl<<compute_hash(str2)<<endl; //compute hash called
   return 0;
 }
 
